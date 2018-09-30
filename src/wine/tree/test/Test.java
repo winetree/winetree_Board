@@ -11,13 +11,12 @@ public class Test {
 		Member_Dto dto = new Member_Dto();
 		
 		dto.setId("winetree");
-		dto.setPw("password");
-		dto.setEmail("hanarinn.naver.com");
-		dto.setWriter("hansol");
 		
 		Member_Dao dao = new Member_Dao();
 		
-		dao.register(dto);
+		boolean isc = dao.idCheck(dto);
+		
+		System.out.println(isc);
 		
 	}
 }
