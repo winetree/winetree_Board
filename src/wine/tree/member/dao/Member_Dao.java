@@ -8,7 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class Member_Dao extends Database {
+public class Member_Dao extends Database implements iMember_Dao{
 	
 	
 	/**
@@ -16,6 +16,7 @@ public class Member_Dao extends Database {
 	 * @param dto
 	 * @return true : Registed / false : Register Failed
 	 */
+	@Override
 	public boolean register(Member_Dto dto) {
 		
 		Connection conn = null;
@@ -56,6 +57,7 @@ public class Member_Dao extends Database {
 	 * @param dto
 	 * @return true : usable / false : unusable
 	 */
+	@Override
 	public boolean idCheck(Member_Dto dto) {
 		
 		Connection conn = null;

@@ -14,10 +14,10 @@
 <div id="navbar-container">
 	<div class="navbar-width">
 
-		<a href="<%=request.getContextPath()%>/index.jsp" class="navbar navbar-header">Winetree</a>
-		<a href="<%=request.getContextPath()%>/board/BoardList.jsp" class="navbar navbar-item">게시판</a>
-		<a href="<%=request.getContextPath()%>/member/RegsterForm.jsp" class="navbar navbar-item">회원가입</a>
-		<a href="<%=request.getContextPath()%>/member/LoginForm.jsp" class="navbar navbar-item">로그인</a>
+		<a href="#" class="navbar navbar-header">Winetree</a>
+		<a href="#" class="navbar navbar-item">게시판</a>
+		<a href="<%=request.getContextPath()%>/register/registerCtrl.jsp?command=form" class="navbar navbar-item">회원가입</a>
+		<a href="#" class="navbar navbar-item">로그인</a>
 	</div>
 </div>
 
