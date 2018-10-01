@@ -14,22 +14,22 @@
 	iMember_Service service = new Member_Service();
 
 	public boolean idCheck(String id) {
-
 		Member_Dto dto = new Member_Dto();
-
 		dto.setId(id);
-
 		return service.idCheck(dto);
 	}
 
 %>
-
 <%
 
 	String command = request.getParameter("command");
 
+	// command=form 전송시 idCheckForm 으로 리다이렉트
 	if (command.equalsIgnoreCase("form")) {
+
 		response.sendRedirect("idCheckForm.jsp");
+
+		// command==idCheck 일시 중복아이디 판단.
 	} else if(command.equalsIgnoreCase("idCheck")) {
 
 			String id = request.getParameter("id");

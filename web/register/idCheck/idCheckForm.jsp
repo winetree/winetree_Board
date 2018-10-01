@@ -20,14 +20,36 @@
 
 %>
 
-<form action="idCheckCtrl.jsp?command=idCheck" method="post" onsubmit="return true">
-
+<form action="idCheckCtrl.jsp?command=idCheck" method="post" onsubmit="return idSubmit();">
 	<input type="text" name="id" placeholder="id">
 	<input type="hidden" name="checked" value="false">
-	<input type="button" value="중복 확인" name="idCheck">
+	<input type="button" name="중복확인" onclick="idCheck();">
 	<input type="submit" value="사용하기">
-
 </form>
+
+<script type="text/javascript">
+
+function idSubmit() {
+
+	var id = document.getElementsByName("id")[0].value;
+	var checked = document.getElementsByName("checked")[0].value;
+
+	if(checked == "false") {
+		alert("중복검사를 먼저 실행해 주세요.");
+		return false;
+	} else if(checked == "true") {
+		return true;
+	}
+}
+
+function idCheck() {
+
+
+
+}
+
+
+</script>
 
 </body>
 </html>
