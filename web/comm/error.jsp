@@ -6,11 +6,15 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-	<title>Title</title>
-</head>
-<body>
+<jsp:include page="./header.jsp"/>
+<%
 
-</body>
-</html>
+	String errMsg = (String)request.getAttribute("errMsg");
+
+%>
+
+<h2>에러 페이지 입니다.</h2>
+
+<%=errMsg%>
+
+<jsp:include page="./footer.jsp"/>

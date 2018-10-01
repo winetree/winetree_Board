@@ -11,6 +11,7 @@
 
 <%!
 
+	// Dao 객체화
 	iMember_Service service = new Member_Service();
 
 	public boolean idCheck(String id) {
@@ -22,25 +23,32 @@
 %>
 <%
 
+	// Id 중복확인 여부의 디폴트값 세팅 후 Form 에 전달
+	request.setCharacterEncoding("UTF-8");
+	request.setAttribute("checked", "false");
+	// 부모 window 에게서 받아온 parameter 값 저장
 	String command = request.getParameter("command");
+	// 알림창 설정
+	request.setAttribute("msg", "init");
 
-	// command=form 전송시 idCheckForm 으로 리다이렉트
+	// command==form : idCheckForm 으로 리다이렉트
 	if (command.equalsIgnoreCase("form")) {
 
-		response.sendRedirect("idCheckForm.jsp");
+		pageContext.forward("idCheckForm.jsp");
 
-		// command==idCheck 일시 중복아이디 판단.
+		// command==idCheck : 중복아이디 판단.
 	} else if(command.equalsIgnoreCase("idCheck")) {
-
 			String id = request.getParameter("id");
 
 		if(idCheck(id)){
-
 			request.setAttribute("id", id);
+			request.setAttribute("checked", "true");
+			request.setAttribute("msg","사용 가능한 아이디 입니다.");
 			pageContext.forward("idCheckForm.jsp");
 
-			System.out.println("사용 가능한 아이디");
-
+		} else {
+			request.setAttribute("msg", "사용 불가능한 아이디 입니다.");
+			pageContext.forward("idCheckForm.jsp");
 		}
 	}
 

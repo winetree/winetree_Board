@@ -10,5 +10,7 @@
 <jsp:include page="./comm/header.jsp"/>
 
 
+<a href="./comm/error.jsp">gg</a>
+
 
 <jsp:include page="./comm/footer.jsp"/>

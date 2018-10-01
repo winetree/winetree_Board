@@ -9,9 +9,10 @@
 
 <jsp:include page="/comm/header.jsp"/>
 
-<form action="registerCheck.jsp" method="post" onsubmit="return validCheck()">
+<form action="registerCtrl.jsp" method="post" onsubmit="return validCheck()">
+	<input type="hidden" name="command" value="register">
 
-	<input type="text" placeholder="id" name="id" onclick="idValidCheck()">
+	<input type="text" placeholder="id" name="id" id="id" readonly="readonly" onclick="idValidCheck()">
 	<input type="password" placeholder="pw" name="pw">
 	<input type="password" placeholder="pwchk" name="pwchk">
 	<input type="text" placeholder="writer" name="writer">
@@ -37,7 +38,7 @@
 		var writer = document.getElementsByName("writer")[0].value;
 		var email = document.getElementsByName("email")[0].value;
 
-		return false;
+		return true;
 	}
 
 </script>
