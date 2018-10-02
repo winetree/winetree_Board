@@ -50,6 +50,9 @@
 			request.setAttribute("msg", "사용 불가능한 아이디 입니다.");
 			pageContext.forward("idCheckForm.jsp");
 		}
+	} else if(command.equalsIgnoreCase("logout")) {
+		session.invalidate();
+		response.sendRedirect("../index.jsp");
 	}
 
 %>

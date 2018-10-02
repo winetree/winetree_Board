@@ -3,6 +3,8 @@ package wine.tree.test;
 import wine.tree.comm.Database;
 import wine.tree.member.dao.Member_Dao;
 import wine.tree.member.dto.Member_Dto;
+import wine.tree.member.service.Member_Service;
+import wine.tree.member.service.iMember_Service;
 
 public class Test {
 	
@@ -11,12 +13,11 @@ public class Test {
 		Member_Dto dto = new Member_Dto();
 		
 		dto.setId("winetree");
+		dto.setPw("winetree");
 		
-		Member_Dao dao = new Member_Dao();
+		iMember_Service service = new Member_Service();
 		
-		boolean isc = dao.idCheck(dto);
-		
-		System.out.println(isc);
+		service.login(dto);
 		
 	}
 }

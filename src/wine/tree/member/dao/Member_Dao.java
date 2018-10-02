@@ -93,4 +93,43 @@ public class Member_Dao extends Database implements iMember_Dao{
 		}
 		return isc;
 	}
+	
+	/**
+	 *
+	 * @param dto
+	 * @return true : login / false : denied
+	 */
+	@Override
+	public boolean login(Member_Dto dto) {
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String sql = " SELECT ID FROM MEMBER WHERE ID = ? AND PW = ? ";
+		
+		int result = 0;
+		
+		try {
+		
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, dto.getId());
+			pstmt.setString(2, dto.getPw());
+			printMsg("login : SQL ready");
+			
+			result += pstmt.executeUpdate();
+			printMsg("login : SQL Executed");
+			
+			printMsg(result>0?"login : ID/PW Found":"login : ID/PW Not matched");
+			
+		} catch (SQLException e) {
+			printMsg("login : Failed", e);
+		} finally {
+			closed(rs, pstmt, conn);
+		}
+		
+		return result>0?true:false;
+	}
 }

@@ -22,4 +22,9 @@ public class Member_Service implements iMember_Service {
 	public boolean idCheck(Member_Dto dto) {
 		return dao.idCheck(dto);
 	}
+	
+	@Override
+	public boolean login(Member_Dto dto) {
+		return dao.login(dto);
+	}
 }

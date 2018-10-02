@@ -6,6 +6,7 @@ public interface iMember_Dao {
 	
 	public boolean register(Member_Dto dto);
 	public boolean idCheck(Member_Dto dto);
+	public boolean login(Member_Dto dto);
 	
 
 
