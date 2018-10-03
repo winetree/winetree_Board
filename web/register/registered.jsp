@@ -1,23 +1,11 @@
-<%@ page import="wine.tree.member.dto.Member_Dto" %><%--
-  Created by IntelliJ IDEA.
-  User: winetree
-  Date: 02/10/2018
-  Time: 2:06 AM
-  To change this template use File | Settings | File Templates.
---%>
+<%@ page import="wine.tree.member.dto.Member_Dto" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-	<title>Title</title>
-</head>
-<body>
-
+<jsp:include page="../comm/header.jsp"/>
 
 <%
 	Member_Dto dto = (Member_Dto)request.getAttribute("dto");
 %>
 
-<%=dto%>
+<p>회원가입이 완료되었습니다.</p>
 
-</body>
-</html>
+<jsp:include page="../comm/footer.jsp"/>

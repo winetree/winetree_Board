@@ -27,4 +27,14 @@ public class Member_Service implements iMember_Service {
 	public boolean login(Member_Dto dto) {
 		return dao.login(dto);
 	}
+	
+	@Override
+	public Member_Dto getUserInfo(String id) {
+		return dao.getUserInfo(id);
+	}
+	
+	@Override
+	public boolean updateMember(Member_Dto dto) {
+		return dao.updateMember(dto);
+	}
 }

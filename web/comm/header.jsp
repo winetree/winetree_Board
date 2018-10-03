@@ -9,10 +9,9 @@
 	<link rel="stylesheet" href="<%=request.getContextPath()%>/comm/src/css/style.css">
 </head>
 <%
-	String loginId = (String)session.getAttribute("login");
-
-	boolean loginChk = loginId!=null?true:false;
-
+	request.setCharacterEncoding("UTF-8");
+	String id = (String)session.getAttribute("id");
+	boolean loginChk = id!=null?true:false;
 %>
 
 
@@ -26,8 +25,9 @@
 
 
 	<% if (loginChk) { %>
-		<a href="<%=request.getContextPath()%>/register/registerCtrl.jsp?command=form" class="navbar navbar-item">내 정보</a>
+		<a href="<%=request.getContextPath()%>/userInfo/userInfoCtrl.jsp?command=form" class="navbar navbar-item">내 정보</a>
 		<a href="<%=request.getContextPath()%>/login/loginCtrl.jsp?command=logout" class="navbar navbar-item">로그아웃</a>
+
 	<% } else {	%>
 		<a href="<%=request.getContextPath()%>/register/registerCtrl.jsp?command=form" class="navbar navbar-item">회원가입</a>
 		<a href="<%=request.getContextPath()%>/login/loginCtrl.jsp?command=form" class="navbar navbar-item">로그인</a>
@@ -36,5 +36,5 @@
 </div>
 
 <h1>
-	hello world!
+	<%=loginChk?id+" 님 환영합니다":"게시판 웹사이트!"%>
 </h1>

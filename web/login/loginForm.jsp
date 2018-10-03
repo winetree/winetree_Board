@@ -15,7 +15,10 @@
 	<input type="text" name="pw" placeholder="pw">
 
 	<input type="submit" value="로그인">
+</form>
 
+<form action="../register/registerCtrl.jsp?command=form" method="post">
+	<input type="submit" value="회원가입">
 </form>
 
 <jsp:include page="../comm/footer.jsp"/>

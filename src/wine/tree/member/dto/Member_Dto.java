@@ -3,22 +3,24 @@ package wine.tree.member.dto;
 import java.io.Serializable;
 
 public class Member_Dto implements Serializable {
-
+	
 	private String id;
 	private String pw;
 	private String email;
 	private String writer;
 	private String regdate;
+	private String level;
 	
 	public Member_Dto() {
 	}
 	
-	public Member_Dto(String id, String pw, String email, String writer, String regdate) {
+	public Member_Dto(String id, String pw, String email, String writer, String regdate, String level) {
 		this.id = id;
 		this.pw = pw;
 		this.email = email;
 		this.writer = writer;
 		this.regdate = regdate;
+		this.level = level;
 	}
 	
 	@Override
@@ -29,6 +31,7 @@ public class Member_Dto implements Serializable {
 			", email='" + email + '\'' +
 			", writer='" + writer + '\'' +
 			", regdate='" + regdate + '\'' +
+			", level='" + level + '\'' +
 			'}';
 	}
 	
@@ -70,5 +73,13 @@ public class Member_Dto implements Serializable {
 	
 	public void setRegdate(String regdate) {
 		this.regdate = regdate;
+	}
+	
+	public String getLevel() {
+		return level;
+	}
+	
+	public void setLevel(String level) {
+		this.level = level;
 	}
 }

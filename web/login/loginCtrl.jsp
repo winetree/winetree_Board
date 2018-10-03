@@ -9,9 +9,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <% request.setCharacterEncoding("UTF-8"); %>
-<jsp:include page="../comm/header.jsp"/>
 <%
-
 	String command = request.getParameter("command");
 	iMember_Service service = new Member_Service();
 
@@ -33,24 +31,16 @@
 
 		if(isc) {
 			System.out.println("로그인에 성공하였습니다.");
-			session.setAttribute("login", dto.getId());
+			session.setAttribute("id", dto.getId());
 			response.sendRedirect("../index.jsp");
 		} else {
 			System.out.println("로그인에 실패하였습니다.");
 			response.sendRedirect("./loginCtrl.jsp?command=form");
 		}
 
+	} else if(command.equalsIgnoreCase("logout")) {
+		session.invalidate();
+		response.sendRedirect("../index.jsp");
 	}
 
-
-
-
-
-
-
-
-
-
-
 %>
-<jsp:include page="../comm/footer.jsp"/>

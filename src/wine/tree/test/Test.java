@@ -10,14 +10,15 @@ public class Test {
 	
 	public static void main(String[] args) {
 		
-		Member_Dto dto = new Member_Dto();
-		
-		dto.setId("winetree");
-		dto.setPw("winetree");
-		
 		iMember_Service service = new Member_Service();
 		
-		service.login(dto);
+		Member_Dto dto = service.getUserInfo("winetree");
+		
+		System.out.println(dto);
+		
+		boolean isc = service.updateMember(dto);
+		
+		System.out.println(isc);
 		
 	}
 }
