@@ -199,4 +199,5 @@ public class Member_Dao extends Database implements iMember_Dao {
 		
 		return result>0?true:false;
 	}
+	
 }

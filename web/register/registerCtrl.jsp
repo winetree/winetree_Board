@@ -33,8 +33,6 @@
 			request.setAttribute("errMsg", "뭔가 실패");
 			pageContext.forward("../comm/error.jsp");
 		}
-
 	}
-
 
 %>

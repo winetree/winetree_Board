@@ -90,3 +90,32 @@ hs_err_pid*
 
 # winetree gitignore
 .DS_Store
+
+# Intellij
+.idea/
+*.iml
+
+# Maven
+log/
+target/
+target/Maven/META-INF/
+target/Maven/WEB-INF/classes/WEB-INF/
+target/Maven/WEB-INF/classes/comm/
+target/Maven/WEB-INF/classes/index.jsp
+target/Maven/WEB-INF/classes/login/
+target/Maven/WEB-INF/classes/register/
+target/Maven/WEB-INF/classes/userInfo/
+target/Maven/WEB-INF/lib/
+target/Maven/WEB-INF/web.xml
+target/Maven/comm/
+target/Maven/index.jsp
+target/Maven/login/
+target/Maven/register/
+target/Maven/userInfo/
+target/classes/WEB-INF/
+target/classes/comm/
+target/classes/index.jsp
+target/classes/login/
+target/classes/register/
+target/classes/userInfo/
+target/generated-sources/

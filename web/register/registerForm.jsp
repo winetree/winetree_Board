@@ -9,18 +9,24 @@
 
 <jsp:include page="/comm/header.jsp"/>
 
-<form action="registerCtrl.jsp" method="post" onsubmit="return validCheck()">
-	<input type="hidden" name="command" value="register">
+<div class="container">
+	<div class="grid-item-col-12">
 
-	<input type="text" placeholder="id" name="id" id="id" readonly="readonly" onclick="idValidCheck()">
-	<input type="password" placeholder="pw" name="pw">
-	<input type="password" placeholder="pwchk" name="pwchk">
-	<input type="text" placeholder="writer" name="writer">
-	<input type="email" placeholder="email" name="email">
+		<form action="registerCtrl.jsp" method="post" onsubmit="return validCheck()">
+			<input type="hidden" name="command" value="register">
 
-	<input type="submit" value="회원가입">
+			<input type="text" placeholder="id" name="id" id="id" readonly="readonly" onclick="idValidCheck()">
+			<input type="password" placeholder="pw" name="pw">
+			<input type="password" placeholder="pwchk" name="pwchk">
+			<input type="text" placeholder="writer" name="writer">
+			<input type="email" placeholder="email" name="email">
 
-</form>
+			<input type="submit" value="회원가입">
+
+		</form>
+
+	</div>
+</div>
 
 <script type="text/javascript">
 
@@ -42,8 +48,6 @@
 	}
 
 </script>
-
-
 
 
 <jsp:include page="/comm/footer.jsp"/>

@@ -8,17 +8,23 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <jsp:include page="../comm/header.jsp"/>
 
-<form action="./loginCtrl.jsp" method="post">
-	<input type="hidden" name="command" value="login">
+<div class="container">
+	<div class="grid-item-col-12">
 
-	<input type="text" name="id" placeholder="id">
-	<input type="text" name="pw" placeholder="pw">
+		<form action="loginCtrl.jsp" method="post">
+			<input type="hidden" name="command" value="login">
 
-	<input type="submit" value="로그인">
-</form>
+			<input type="text" name="id" placeholder="id">
+			<input type="password" name="pw" placeholder="pw">
 
-<form action="../register/registerCtrl.jsp?command=form" method="post">
-	<input type="submit" value="회원가입">
-</form>
+			<input type="submit" value="로그인">
+		</form>
+
+		<form action="../register/registerCtrl.jsp?command=form" method="post">
+			<input type="submit" value="회원가입">
+		</form>
+
+	</div>
+</div>
 
 <jsp:include page="../comm/footer.jsp"/>
