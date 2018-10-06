@@ -29,12 +29,15 @@ public class Member_Service implements iMember_Service {
 	}
 	
 	@Override
-	public Member_Dto getUserInfo(String id) {
-		return dao.getUserInfo(id);
+	public Member_Dto getUserInfo(Member_Dto dto) {
+		return dao.getUserInfo(dto);
 	}
 	
 	@Override
 	public boolean updateMember(Member_Dto dto) {
 		return dao.updateMember(dto);
 	}
+	
+	@Override
+	public boolean pwCheck(Member_Dto dto){return dao.pwCheck(dto);}
 }

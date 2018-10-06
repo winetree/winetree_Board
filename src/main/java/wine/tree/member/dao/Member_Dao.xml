@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="wine.tree">
+
+    <typeAlias alias="Member_Dto"
+               type="wine.tree.member.dto.Member_Dto"/>
+
+    <typeAlias alias="String" type="java.lang.String"/>
+
+    <select id="getUserInfo" parameterClass="Member_Dto"
+            resultClass="Member_Dto">
+        SELECT ID, EMAIL, WRITER, REGDATE, "LEVEL" FROM MEMBER WHERE ID =
+        #id#
+    </select>
+
+    <select id="login" parameterClass="Member_Dto" resultClass="Member_Dto">
+        SELECT ID FROM MEMBER WHERE ID = #id# AND PW = #pw#
+    </select>
+
+    <select id="idCheck" parameterClass="Member_Dto" resultClass="Member_Dto">
+        SELECT ID FROM MEMBER WHERE ID = #id#
+    </select>
+
+    <select id="pwCheck" parameterClass="Member_Dto" resultClass="Member_Dto">
+        SELECT ID FROM MEMBER WHERE ID = #id# AND PW = #pw#
+    </select>
+
+    <update id="updateUser" parameterClass="Member_Dto">
+        UPDATE MEMBER SET PW = #pw#, EMAIL = #email#, WRITER = #writer# WHERE ID = #id#
+    </update>
+
+    <insert id="register" parameterClass="Member_Dto">
+        INSERT INTO MEMBER(ID, PW, EMAIL, WRITER, REGDATE, "LEVEL") VALUES(#id#, #pw#, #email#, #writer#, SYSDATE, 1)
+    </insert>
+
+</sqlMap>

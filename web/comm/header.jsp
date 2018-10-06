@@ -28,7 +28,7 @@
 	<div class="navbar-width">
 
 		<a href="<%=request.getContextPath()%>/index.jsp" class="navbar navbar-header">Winetree</a>
-		<a href="#" class="navbar navbar-item">게시판</a>
+		<a href="<%=request.getContextPath()%>/board/boardCtrl.jsp?command=form" class="navbar navbar-item">게시판</a>
 
 
 	<% if (loginChk) { %>

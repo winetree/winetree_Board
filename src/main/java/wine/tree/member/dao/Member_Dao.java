@@ -1,6 +1,9 @@
 package wine.tree.member.dao;
 
+import com.ibatis.sqlmap.client.SqlMapClient;
+import org.apache.log4j.Logger;
 import wine.tree.comm.Database;
+import wine.tree.comm.SQLSupport;
 import wine.tree.member.dto.Member_Dto;
 
 import java.sql.Connection;
@@ -10,6 +13,8 @@ import java.sql.SQLException;
 
 public class Member_Dao extends Database implements iMember_Dao {
 	
+	SqlMapClient manager = SQLSupport.SQLMapClient;
+	Logger logger = Logger.getLogger("Member_Dao");
 	
 	/**
 	 * Register Method
@@ -19,38 +24,15 @@ public class Member_Dao extends Database implements iMember_Dao {
 	 */
 	@Override
 	public boolean register(Member_Dto dto) {
-		
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		
-		String sql = " INSERT INTO MEMBER(ID, PW, EMAIL, WRITER, REGDATE, \"LEVEL\") VALUES(?, ?, ?, ?, SYSDATE, 1) ";
-		
-		int result = 0;
-		
+		Member_Dto result;
+		result = new Member_Dto();
 		try {
-			
-			conn = getConnection();
-			
-			pstmt = conn.prepareStatement(sql);
-			
-			pstmt.setString(1, dto.getId());
-			pstmt.setString(2, dto.getPw());
-			pstmt.setString(3, dto.getEmail());
-			pstmt.setString(4, dto.getWriter());
-			printMsg("Register : SQL Ready.");
-			
-			result = pstmt.executeUpdate();
-			printMsg("Register : SQL Executed.");
-			
-			printMsg("Register : Registered.");
-		} catch (SQLException e) {
-			printMsg("Register : Register Failed.", e);
-		} finally {
-			closed(rs, pstmt, conn);
+			manager.insert("wine.tree.register", dto);
+			result = (Member_Dto)manager.queryForObject("wine.tree.getUserInfo", dto);
+		} catch(SQLException e) {
+			e.printStackTrace();
 		}
-		
-		return result > 0 ? true : false;
+		return result.getId()!=null?true:false;
 	}
 	
 	/**
@@ -59,142 +41,64 @@ public class Member_Dao extends Database implements iMember_Dao {
 	 * @param dto
 	 * @return true : usable / false : unusable
 	 */
+	
 	@Override
 	public boolean idCheck(Member_Dto dto) {
-		
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		
-		String id = dto.getId();
-		String sql = " SELECT ID FROM MEMBER WHERE ID = ? ";
-		boolean isc = true;
-		
+		Member_Dto result = new Member_Dto();
 		try {
-			
-			conn = getConnection();
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, id);
-			printMsg("idCheck : SQL ready.");
-			
-			rs = pstmt.executeQuery();
-			printMsg("idCheck : SQL Executed.");
-			
-			while (rs.next()) {
-				if (rs.getString(1).equalsIgnoreCase(id)) {
-					isc = false;
-				}
-			}
-			
-			printMsg(isc ? "idCheck : Usable ID" : "idCheck : Unusable ID");
-			
-		} catch (SQLException e) {
-			printMsg("idCheck : idCheck Failed", e);
-		} finally {
-			closed(rs, pstmt, conn);
+			result = (Member_Dto)manager.queryForObject("wine.tree.getUserInfo", dto);
+		} catch(SQLException e) {
+			e.printStackTrace();
 		}
-		return isc;
+		return result!=null?false:true;
 	}
 	
-	/**
-	 * @param dto
-	 * @return true : login / false : denied
-	 */
+	@Override
+	public boolean pwCheck(Member_Dto dto) {
+		Member_Dto result = new Member_Dto();
+	
+		try {
+			result = (Member_Dto)manager.queryForObject("wine.tree.pwCheck", dto);
+		} catch(SQLException e) {
+			e.printStackTrace();
+		}
+	
+		return result!=null?true:false;
+	}
+	
 	@Override
 	public boolean login(Member_Dto dto) {
-		
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		
-		String sql = " SELECT ID FROM MEMBER WHERE ID = ? AND PW = ? ";
-		
-		int result = 0;
-		
+		Member_Dto result = new Member_Dto();
 		try {
-			
-			conn = getConnection();
-			pstmt = conn.prepareStatement(sql);
-			
-			pstmt.setString(1, dto.getId());
-			pstmt.setString(2, dto.getPw());
-			printMsg("login : SQL ready");
-			
-			result += pstmt.executeUpdate();
-			printMsg("login : SQL Executed");
-			
-			printMsg(result > 0 ? "login : ID/PW Found" : "login : ID/PW Not matched");
-			
-		} catch (SQLException e) {
-			printMsg("login : Failed", e);
-		} finally {
-			closed(rs, pstmt, conn);
+			 result = (Member_Dto)manager.queryForObject("wine.tree.login", dto);
+		} catch(SQLException e) {
+			e.printStackTrace();
 		}
-		
-		return result > 0 ? true : false;
+		return result!=null?true:false;
 	}
 	
 	@Override
-	public Member_Dto getUserInfo(String id) {
-		Member_Dto dto = new Member_Dto();
-		
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		
-		String sql = " SELECT ID, EMAIL, WRITER, REGDATE, PW, \"LEVEL\" FROM MEMBER WHERE ID = ? ";
+	public Member_Dto getUserInfo(Member_Dto dto) {
+		Member_Dto result = new Member_Dto();
 		
 		try {
-			
-			conn = getConnection();
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, id);
-			rs = pstmt.executeQuery();
-			
-			while(rs.next()) {
-				dto.setId(rs.getString(1));
-				dto.setEmail(rs.getString(2));
-				dto.setWriter(rs.getString(3));
-				dto.setRegdate(rs.getString(4));
-				dto.setPw(rs.getString(5));
-				dto.setLevel(rs.getString(6));
-			}
-			
+			result = (Member_Dto)manager.queryForObject("wine.tree.getUserInfo", dto);
+		
 		} catch (SQLException e) {
-			printMsg("getUserInfo : Failed", e);
-		} finally {
-			closed(rs, pstmt, conn);
+			printMsg("iBatis : 실패", e);
 		}
-
-		return dto;
+		
+		return result;
 	}
 	
 	@Override
 	public boolean updateMember(Member_Dto dto) {
-	
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-
 		int result = 0;
 		
-		String sql = " UPDATE MEMBER SET PW = ?, EMAIL = ?, WRITER = ? WHERE ID = ? ";
-		
 		try {
-			conn = getConnection();
-			pstmt = conn.prepareStatement(sql);
-			
-			pstmt.setString(1, dto.getPw());
-			pstmt.setString(2, dto.getEmail());
-			pstmt.setString(3, dto.getWriter());
-			pstmt.setString(4, dto.getId());
-			
-			result = pstmt.executeUpdate();
-			
+			result = manager.update("wine.tree.updateUser", dto);
 		} catch (SQLException e) {
-			printMsg("updateMember : ", e);
-		} finally {
-			closed(rs, pstmt, conn);
+			e.printStackTrace();
 		}
 		
 		return result>0?true:false;

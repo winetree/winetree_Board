@@ -4,11 +4,14 @@ import wine.tree.member.dto.Member_Dto;
 
 public interface iMember_Dao {
 	
-	public boolean register(Member_Dto dto);
-	public boolean idCheck(Member_Dto dto);
-	public boolean login(Member_Dto dto);
-	public Member_Dto getUserInfo(String id);
-	public boolean updateMember(Member_Dto dto);
+	boolean register(Member_Dto dto);
+	boolean idCheck(Member_Dto dto);
+	
+	boolean pwCheck(Member_Dto dto);
+	
+	boolean login(Member_Dto dto);
+	Member_Dto getUserInfo(Member_Dto dto);
+	boolean updateMember(Member_Dto dto);
 
 
 }
