@@ -30,8 +30,8 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" exported="" scope="PROVIDED" name="Tomcat 8.5.34" level="application_server_libraries" />
-    <orderEntry type="library" name="Maven: com.github.linpn:ibatis:2.3.9" level="project" />
-    <orderEntry type="library" name="Maven: org.mod4j.org.eclipse.xtext:log4j:1.2.15" level="project" />
-    <orderEntry type="library" name="Maven: com.oracle:ojdbc6:12.1.0.1-atlassian-hosted" level="project" />
+    <orderEntry type="library" exported="" name="Maven: com.github.linpn:ibatis:2.3.9" level="project" />
+    <orderEntry type="library" exported="" name="Maven: org.mod4j.org.eclipse.xtext:log4j:1.2.15" level="project" />
+    <orderEntry type="library" exported="" name="Maven: com.oracle:ojdbc6:12.1.0.1-atlassian-hosted" level="project" />
   </component>
 </module>
