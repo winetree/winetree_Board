@@ -98,3 +98,13 @@ hs_err_pid*
 # Maven
 log/
 target/
+
+# Eclipse
+.classpath
+.project
+.settings/
+
+# Intellij
+.idea/
+*.iml
+*.iws
