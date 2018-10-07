@@ -1,11 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <!DOCTYPE html>
-
-</body>
 </html>
-
-
-<html lang="ko">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport"
