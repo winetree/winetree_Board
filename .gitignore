@@ -92,7 +92,7 @@ hs_err_pid*
 .DS_Store
 
 # Intellij
-.idea/
+.idea
 *.iml
 
 # Maven
