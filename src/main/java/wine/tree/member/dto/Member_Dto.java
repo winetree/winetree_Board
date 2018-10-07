@@ -4,6 +4,9 @@ import java.io.Serializable;
 
 public class Member_Dto implements Serializable {
 	
+	
+	private static final long serialVersionUID = -4672395975905508513L;
+	
 	private String id;
 	private String pw;
 	private String email;

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="wine.tree.board">
+
+    <typeAlias alias="Board_Dto"
+               type="wine.tree.board.dto.Board_Dto"/>
+
+    <typeAlias alias="String" type="java.lang.String"/>
+
+    <select id="getAllBoard" resultClass="Board_Dto" >
+        SELECT SEQ, ID, WRITER, TITLE, CONTENT, "REF", STEP, "DEPTH", READCOUNT, REGDATE, DELFLAG FROM BOARD ORDER BY SEQ DESC
+    </select>
+
+    <insert id="insertBoard" parameterClass="Board_Dto">
+        INSERT INTO BOARD(SEQ, ID, WRITER, TITLE, CONTENT, "REF", STEP, "DEPTH", READCOUNT, REGDATE, DELFLAG) VALUES(
+        BOARD_SEQ.nextval, #id#, #writer#, #title#, #content#, 0, 0, 0, 0, SYSDATE, 'N')
+    </insert>
+
+    <select id="viewContent">
+        SELECT SEQ, ID, WRITER, TITLE, CONTENT, "REF", STEP, "DEPTH", READCOUNT, REGDATE, DELFLAG FROM BOARD WHERE SEQ = #seq#
+    </select>
+
+</sqlMap>

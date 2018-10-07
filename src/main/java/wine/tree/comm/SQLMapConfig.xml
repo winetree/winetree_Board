@@ -18,5 +18,6 @@
     </transactionManager>
 
     <sqlMap resource="wine/tree/member/dao/Member_Dao.xml"></sqlMap>
+    <sqlMap resource="wine/tree/board/dao/Board_Dao.xml"></sqlMap>
 
 </sqlMapConfig>
