@@ -19,6 +19,7 @@ public class Board_Dao implements iBoard_Dao {
 	@Override
 	public List<Board_Dto> getAllBoard() {
 		List<Board_Dto> lists = new ArrayList<Board_Dto>();
+
 		try {
 			lists = (List<Board_Dto>)manager.queryForList("wine.tree.board.getAllBoard");
 		} catch(SQLException e ) {

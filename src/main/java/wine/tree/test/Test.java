@@ -27,8 +27,6 @@ public class Test {
 		dto.setContent("content");
 		
 		dao.insertBoard(dto);
-		
-		
-		
+
 	}
 }
