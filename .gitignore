@@ -110,3 +110,4 @@ target/
 .idea/
 *.iml
 *.iws
+/goorm.manifest
