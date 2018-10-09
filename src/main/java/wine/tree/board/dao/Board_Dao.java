@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Map;
 
 public class Board_Dao implements iBoard_Dao {
-
+    
 	SqlMapClient manager = SQLSupport.SQLMapClient;
 	Logger logger = Logger.getLogger("Board_Dao");
 	
