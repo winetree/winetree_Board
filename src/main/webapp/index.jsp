@@ -9,5 +9,6 @@
 
 <jsp:include page="./comm/header.jsp"/>
 
+<h2>hello world!</h2>
 
 <jsp:include page="./comm/footer.jsp"/>
