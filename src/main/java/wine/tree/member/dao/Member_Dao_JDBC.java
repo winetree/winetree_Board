@@ -55,17 +55,16 @@ public class Member_Dao_JDBC extends Database implements iMember_Dao {
 	/**
 	 * idCheck method
 	 *
-	 * @param dto
+	 * @param
 	 * @return true : usable / false : unusable
 	 */
 	@Override
-	public boolean idCheck(Member_Dto dto) {
+	public boolean idCheck(String id) {
 		
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
-		String id = dto.getId();
 		String sql = " SELECT ID FROM MEMBER WHERE ID = ? ";
 		boolean isc = true;
 		
@@ -139,8 +138,7 @@ public class Member_Dao_JDBC extends Database implements iMember_Dao {
 	}
 	
 	@Override
-	public Member_Dto getUserInfo(Member_Dto dtos) {
-		String id = dtos.getId();
+	public Member_Dto getUserInfo(String id) {
 		Member_Dto dto = new Member_Dto();
 		
 		Connection conn = null;

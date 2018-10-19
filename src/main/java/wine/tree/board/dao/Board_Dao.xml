@@ -1,17 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
-<sqlMap namespace="wine.tree.board">
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="wine.tree.board">
 
-    <typeAlias alias="Board_Dto"
-               type="wine.tree.board.dto.Board_Dto"/>
-
-    <typeAlias alias="String" type="java.lang.String"/>
-
-    <select id="getAllBoard" resultClass="Board_Dto" >
+    <select id="getAllBoard" resultType="Board_Dto" >
         SELECT SEQ, ID, WRITER, TITLE, CONTENT, "REF", STEP, "DEPTH", READCOUNT, REGDATE, DELFLAG FROM BOARD ORDER BY SEQ DESC
     </select>
 
-    <insert id="insertBoard" parameterClass="Board_Dto">
+    <insert id="insertBoard" parameterType="Board_Dto">
         INSERT INTO BOARD(SEQ, ID, WRITER, TITLE, CONTENT, "REF", STEP, "DEPTH", READCOUNT, REGDATE, DELFLAG) VALUES(
         BOARD_SEQ.nextval, #id#, #writer#, #title#, #content#, 0, 0, 0, 0, SYSDATE, 'N')
     </insert>
@@ -20,4 +15,4 @@
         SELECT SEQ, ID, WRITER, TITLE, CONTENT, "REF", STEP, "DEPTH", READCOUNT, REGDATE, DELFLAG FROM BOARD WHERE SEQ = #seq#
     </select>
 
-</sqlMap>
+</mapper>

@@ -5,6 +5,7 @@ import wine.tree.board.dao.Board_Dao;
 import wine.tree.board.dto.Board_Dto;
 import wine.tree.comm.Database;
 import wine.tree.comm.SQLSupport;
+import wine.tree.comm.SQLSupport_MyBatis;
 import wine.tree.member.dao.Member_Dao;
 import wine.tree.member.dto.Member_Dto;
 import wine.tree.member.service.Member_Service;
@@ -17,16 +18,15 @@ public class Test {
 	
 	public static void main(String[] args) {
 		
-		Board_Dao dao = new Board_Dao();
 		
-		Board_Dto dto = new Board_Dto();
+		
+		Member_Dao dao = new Member_Dao();
+		Member_Dto dto = new Member_Dto();
 		
 		dto.setId("winetree");
-		dto.setWriter("winetree");
-		dto.setTitle("title");
-		dto.setContent("content");
-		
-		dao.insertBoard(dto);
 
+		Member_Dto dto2 = dao.getUserInfo(dto.getId());
+		
+		System.out.println(dto2);
 	}
 }

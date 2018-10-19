@@ -1,5 +1,7 @@
 package wine.tree.member.dto;
 
+import org.apache.ibatis.session.ResultHandler;
+
 import java.io.Serializable;
 
 public class Member_Dto implements Serializable {

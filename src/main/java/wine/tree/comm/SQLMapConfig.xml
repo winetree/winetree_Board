@@ -1,23 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE sqlMapConfig PUBLIC "-//ibatis.apache.org//DTD SQL Map Config 2.0//EN"
-        "http://ibatis.apache.org/dtd/sql-map-config-2.dtd" >
-<sqlMapConfig>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd" >
+<configuration>
+	<properties resource="db.properties"/>
+	
+	<typeAliases>
+		<typeAlias alias="Member_Dto"
+		           type="wine.tree.member.dto.Member_Dto"/>
+		<typeAlias alias="String" type="java.lang.String"/>
+		<typeAlias alias="Board_Dto"
+		           type="wine.tree.board.dto.Board_Dto"/>
+	</typeAliases>
+	
+	<environments default="development">
+		<environment id="development">
+			<transactionManager type="JDBC"/>
+			<dataSource type="POOLED">
+				<property name="driver" value="${driver}"/>
+				<property name="url" value="${url}"/>
+				<property name="username" value="${user}"/>
+				<property name="password" value="${password}"/>
+			</dataSource>
+		</environment>
+	</environments>
+	
+	<mappers>
+		<mapper resource="wine/tree/member/dao/Member_Dao.xml"></mapper>
+		<mapper resource="wine/tree/board/dao/Board_Dao.xml"></mapper>
+	</mappers>
 
-    <properties resource="db.properties"/>
-
-    <settings useStatementNamespaces="true"/>
-
-    <transactionManager type="JDBC"
-                        commitRequired="true">
-        <dataSource type="simple">
-            <property name="JDBC.Driver" value="${driver}"/>
-            <property name="JDBC.ConnectionURL" value="${url}"/>
-            <property name="JDBC.Username" value="${user}"/>
-            <property name="JDBC.Password" value="${password}"/>
-        </dataSource>
-    </transactionManager>
-
-    <sqlMap resource="wine/tree/member/dao/Member_Dao.xml"></sqlMap>
-    <sqlMap resource="wine/tree/board/dao/Board_Dao.xml"></sqlMap>
-
-</sqlMapConfig>
+</configuration>
