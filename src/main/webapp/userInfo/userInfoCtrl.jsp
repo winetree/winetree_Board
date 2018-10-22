@@ -20,7 +20,7 @@
 
 	} else if(command.equalsIgnoreCase("form")) {
 
-		Member_Dto result = service.getUserInfo(dto);
+		Member_Dto result = service.getUserInfo(dto.getId());
 
 		session.setAttribute("dto", result);
 		pageContext.forward("userInfoForm.jsp");

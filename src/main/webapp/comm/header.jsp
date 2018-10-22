@@ -31,7 +31,7 @@
 		<a href="<%=request.getContextPath()%>/login/loginCtrl.jsp?command=logout" class="navbar navbar-item">로그아웃</a>
 
 	<% } else {	%>
-		<a href="<%=request.getContextPath()%>/register/registerCtrl.jsp?command=form" class="navbar navbar-item">회원가입</a>
+		<a href="<%=request.getContextPath()%>/registerCtrl?command=form" class="navbar navbar-item">회원가입</a>
 		<a href="<%=request.getContextPath()%>/login/loginCtrl.jsp?command=form" class="navbar navbar-item">로그인</a>
 	<% } %>
 	</div>

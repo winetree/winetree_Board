@@ -1,6 +1,8 @@
 package wine.tree.board.dao;
 
 import com.ibatis.sqlmap.client.SqlMapClient;
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.log4j.Logger;
 import wine.tree.board.dto.Board_Dto;
 import wine.tree.comm.SQLSupport;
@@ -11,19 +13,21 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Board_Dao implements iBoard_Dao {
-    
-	SqlMapClient manager = SQLSupport.SQLMapClient;
+public class Board_Dao extends SQLSupport implements iBoard_Dao {
+	
+	SqlSessionFactory manager = getSqlSessionFactory();
 	Logger logger = Logger.getLogger("Board_Dao");
 	
 	@Override
 	public List<Board_Dto> getAllBoard() {
-		List<Board_Dto> lists = new ArrayList<Board_Dto>();
-
+		List<Board_Dto> lists = null;
+			SqlSession session = manager.openSession(true);
 		try {
-			lists = (List<Board_Dto>)manager.queryForList("wine.tree.board.getAllBoard");
-		} catch(SQLException e ) {
+			session.selectList("wine.tree.board.getAllBoard");
+		} catch (Exception e) {
 			e.printStackTrace();
+		} finally {
+			session.close();
 		}
 		return lists;
 	}
@@ -31,12 +35,15 @@ public class Board_Dao implements iBoard_Dao {
 	@Override
 	public int insertBoard(Board_Dto dto) {
 		int result = 0;
+			SqlSession session = manager.openSession(true);
 		try {
-			manager.insert("wine.tree.board.insertBoard", dto);
-		} catch (SQLException e) {
+			result = session.insert("wine.tree.board.insertBoard", dto);
+		} catch (Exception e) {
 			e.printStackTrace();
+		} finally {
+			session.close();
 		}
 		return result;
 	}
-
+	
 }

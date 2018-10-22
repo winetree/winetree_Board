@@ -19,8 +19,8 @@ public class Member_Service implements iMember_Service {
 	}
 	
 	@Override
-	public boolean idCheck(Member_Dto dto) {
-		return dao.idCheck(dto);
+	public boolean idCheck(String id) {
+		return dao.idCheck(id);
 	}
 	
 	@Override
@@ -29,8 +29,8 @@ public class Member_Service implements iMember_Service {
 	}
 	
 	@Override
-	public Member_Dto getUserInfo(Member_Dto dto) {
-		return dao.getUserInfo(dto);
+	public Member_Dto getUserInfo(String id) {
+		return dao.getUserInfo(id);
 	}
 	
 	@Override

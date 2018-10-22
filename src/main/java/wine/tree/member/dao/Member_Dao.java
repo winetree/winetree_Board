@@ -1,20 +1,24 @@
 package wine.tree.member.dao;
 
 import com.ibatis.sqlmap.client.SqlMapClient;
+import org.apache.ibatis.session.ResultHandler;
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.log4j.Logger;
 import wine.tree.comm.Database;
 import wine.tree.comm.SQLSupport;
 import wine.tree.member.dto.Member_Dto;
 
+import javax.servlet.jsp.PageContext;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class Member_Dao extends Database implements iMember_Dao {
+public class Member_Dao extends SQLSupport implements iMember_Dao {
 	
-	SqlMapClient manager = SQLSupport.SQLMapClient;
-	Logger logger = Logger.getLogger("Member_Dao");
+	SqlSessionFactory manager = getSqlSessionFactory();
+	Logger logger = Logger.getLogger(Member_Dao.class);
 	
 	/**
 	 * Register Method
@@ -24,15 +28,19 @@ public class Member_Dao extends Database implements iMember_Dao {
 	 */
 	@Override
 	public boolean register(Member_Dto dto) {
+		
 		Member_Dto result;
 		result = new Member_Dto();
+			SqlSession session = manager.openSession(true);
 		try {
-			manager.insert("wine.tree.register", dto);
-			result = (Member_Dto)manager.queryForObject("wine.tree.getUserInfo", dto);
-		} catch(SQLException e) {
+			session.insert("wine.tree.register", dto);
+			result = session.selectOne("wine.tree.getUserInfo", dto);
+		} catch (Exception e) {
 			e.printStackTrace();
+		} finally {
+			session.close();
 		}
-		return result.getId()!=null?true:false;
+		return result.getId() != null ? true : false;
 	}
 	
 	/**
@@ -43,51 +51,61 @@ public class Member_Dao extends Database implements iMember_Dao {
 	 */
 	
 	@Override
-	public boolean idCheck(Member_Dto dto) {
-		Member_Dto result = new Member_Dto();
+	public boolean idCheck(String id) {
+		Member_Dto result = null;
+		
+		SqlSession session = getSqlSessionFactory().openSession(true);
+		
 		try {
-			result = (Member_Dto)manager.queryForObject("wine.tree.getUserInfo", dto);
-		} catch(SQLException e) {
+			result = session.selectOne("wine.tree.getUserInfo", id);
+		} catch (Exception e) {
 			e.printStackTrace();
+		} finally {
+			session.close();
 		}
-		return result!=null?false:true;
+		return result != null ? false : true;
 	}
 	
 	@Override
 	public boolean pwCheck(Member_Dto dto) {
 		Member_Dto result = new Member_Dto();
-	
+		SqlSession session = getSqlSessionFactory().openSession(true);
 		try {
-			result = (Member_Dto)manager.queryForObject("wine.tree.pwCheck", dto);
-		} catch(SQLException e) {
+			result = session.selectOne("wine.tree.pwCheck", dto);
+		} catch (Exception e) {
 			e.printStackTrace();
+		} finally {
+			session.close();
 		}
-	
-		return result!=null?true:false;
+		
+		return result != null ? true : false;
 	}
 	
 	@Override
 	public boolean login(Member_Dto dto) {
 		Member_Dto result = new Member_Dto();
+		SqlSession session = getSqlSessionFactory().openSession(true);
 		try {
-			 result = (Member_Dto)manager.queryForObject("wine.tree.login", dto);
-		} catch(SQLException e) {
+			result = session.selectOne("wine.tree.login", dto);
+		} catch (Exception e) {
 			e.printStackTrace();
+		} finally {
+			session.close();
 		}
-		return result!=null?true:false;
+		return result != null ? true : false;
 	}
 	
 	@Override
-	public Member_Dto getUserInfo(Member_Dto dto) {
-		Member_Dto result = new Member_Dto();
-		
+	public Member_Dto getUserInfo(String id) {
+		Member_Dto result = null;
+		SqlSession session = getSqlSessionFactory().openSession(true);
 		try {
-			result = (Member_Dto)manager.queryForObject("wine.tree.getUserInfo", dto);
-		
-		} catch (SQLException e) {
-			printMsg("iBatis : 실패", e);
+			result = session.selectOne("wine.tree.getUserInfo", id);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
 		}
-		
 		return result;
 	}
 	
@@ -95,13 +113,15 @@ public class Member_Dao extends Database implements iMember_Dao {
 	public boolean updateMember(Member_Dto dto) {
 		int result = 0;
 		
+		SqlSession session = getSqlSessionFactory().openSession(true);
 		try {
-			result = manager.update("wine.tree.updateUser", dto);
-		} catch (SQLException e) {
+			result = session.update("wine.tree.updateUser", dto);
+		} catch (Exception e) {
 			e.printStackTrace();
+		} finally {
+			session.close();
 		}
-		
-		return result>0?true:false;
+		return result > 0 ? true : false;
 	}
 	
 }

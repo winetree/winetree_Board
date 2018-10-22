@@ -3,25 +3,34 @@ package wine.tree.comm;
 import com.ibatis.common.resources.Resources;
 import com.ibatis.sqlmap.client.SqlMapClient;
 import com.ibatis.sqlmap.client.SqlMapClientBuilder;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+import org.apache.log4j.Logger;
 
+import java.io.IOException;
 import java.io.Reader;
 
 public class SQLSupport {
 	
-	public static SqlMapClient SQLMapClient;
+	private static SqlSessionFactory sqlSessionFactory;
+	Logger logger = Logger.getLogger(SQLSupport.class);
 	
 	static {
+		String configPath = "wine/tree/comm/SQLMapConfig.xml";
 		
-		String SQLMapConfig = "wine/tree/comm/SQLMapConfig.xml";
 		try {
-			Reader reader = Resources.getResourceAsReader(SQLMapConfig);
-			SQLMapClient = SqlMapClientBuilder.buildSqlMapClient(reader);
-			System.out.println("iBatis : 객체 생성");
+			Reader reader = Resources.getResourceAsReader(configPath);
+			sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
+			reader.close();
+			System.out.println("SqlSessionFactory 객체 생성 완료");
 			
-		} catch (Exception e) {
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+	}
+	
+	public static SqlSessionFactory getSqlSessionFactory() {
+		return sqlSessionFactory;
 	}
 	
 	

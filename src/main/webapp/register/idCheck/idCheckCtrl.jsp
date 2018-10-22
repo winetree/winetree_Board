@@ -14,12 +14,6 @@
 	// Dao 객체화
 	iMember_Service service = new Member_Service();
 
-	public boolean idCheck(String id) {
-		Member_Dto dto = new Member_Dto();
-		dto.setId(id);
-		return service.idCheck(dto);
-	}
-
 %>
 <%
 
@@ -40,7 +34,7 @@
 	} else if(command.equalsIgnoreCase("idCheck")) {
 			String id = request.getParameter("id");
 
-		if(idCheck(id)){
+		if(service.idCheck(id)){
 			request.setAttribute("id", id);
 			request.setAttribute("checked", "true");
 			request.setAttribute("msg","사용 가능한 아이디 입니다.");
