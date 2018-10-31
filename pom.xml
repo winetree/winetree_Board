@@ -21,12 +21,7 @@
    
 
 	<dependencies>
-		<!-- ibatis library -->
-		<dependency>
-			<groupId>com.github.linpn</groupId>
-			<artifactId>ibatis</artifactId>
-			<version>2.3.9</version>
-		</dependency>
+		
 		<!-- log4j library -->
 		<dependency>
 			<groupId>org.mod4j.org.eclipse.xtext</groupId>
@@ -46,16 +41,12 @@
 			<version>3.4.5</version>
 		</dependency>
 		<dependency>
-			<groupId>org.postgresql</groupId>
-			<artifactId>postgresql</artifactId>
-			<version>42.2.5</version>
-		</dependency>
-		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
 			<version>3.1.0</version>
 			<scope>provided</scope>
 		</dependency>
+		
 	</dependencies>
 
 
